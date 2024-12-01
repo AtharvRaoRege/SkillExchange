@@ -1,16 +1,20 @@
 const express = require('express');
 const connectDB = require('./config/db');
+const cors = require('cors'); // Import cors
 require('dotenv').config();
 
 const app = express();
 
-// This is important: express.json() middleware should be placed before routes
-app.use(express.json()); // Middleware to parse incoming JSON bodies
-
 // Connect to MongoDB
 connectDB();
 
-// Routes
+// Enable CORS for all routes
+app.use(cors());
+
+// Middleware to parse JSON
+app.use(express.json());
+
+// Import and use authentication routes
 const authRoutes = require('./routes/auth');
 app.use('/api/auth', authRoutes);
 

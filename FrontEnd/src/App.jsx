@@ -1,15 +1,19 @@
-import React from 'react'
-import Register from './components/Register'
-import Login from './components/Login'
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Register from './components/Register'; // Register component
+import Login from './components/Login'; // Login component
 
-const App = () => {
+function App() {
   return (
-    <div>
-      <h1>P2P Skills Exchange Platform</h1>
-      <Register/>
-      <Login/>
-    </div>
-  )
+    <Router>
+      <Routes>
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        {/* Default route to Register */}
+        <Route path="/" element={<Register />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
